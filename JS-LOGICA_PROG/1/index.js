@@ -7,7 +7,7 @@ Operadores de comparação
 == igualdade (valor)
 === igualdade restrita (valor e tipo)
 != diferente (valor)
-!== diferente estrito (valor e tipo)
+!== diferente estrito (valor e tipo) 
 */
 
 const comp = 10 > 5;
