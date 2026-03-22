@@ -30,8 +30,7 @@ if (horario >= 0 && horario <= 11) {
     console.log('Não entrou em nenhum das condições');
 };
 
-const tenhoGrana = false;
-
+const tenhoGrana = true;
 if (tenhoGrana) {
     console.log('Vou sair de casa');
 } else {
