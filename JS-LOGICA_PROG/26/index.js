@@ -12,6 +12,6 @@ function mostraHora() {
 
 // setInterval(function() {console.log(mostraHora())}, 1000); // seta um intervalo de 1000milisegundos
 
-const timer = setInterval(function() {console.log(mostraHora())}, 1000); // seta um intervalo 
+const timer = setInterval(function() {console.log(mostraHora())}, 1000); // seta um intervalo de 1sg 
 setTimeout(function() {clearInterval(timer)}, 3000); // tempo de parada no segundo 3
 setTimeout(function() {console.log('Depois de 5 segundos sou executado')}, 5000); // no segundo 5
