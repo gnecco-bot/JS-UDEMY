@@ -17,4 +17,4 @@ const numerosPares2 = numeros
     .reduce((ac, valor) => ac + valor);
 
 console.log(numerosPares);
-console.log(numerosPares2);
+console.log(numerosPares2); 
