@@ -1,0 +1,73 @@
+// Superclass
+function Conta(agencia, conta, saldo) {
+    this.agencia = agencia;
+    this.conta = conta;
+    this.saldo = saldo;
+}
+
+Conta.prototype.sacar = function(valor) {
+    if(this.saldo < valor) {
+        console.log(`Saldo insuficiente: ${this.saldo}`);
+        this.verSaldo();
+        return;
+    }
+
+    this.saldo -= valor;
+    this.verSaldo()
+};
+Conta.prototype.depositar = function(valor) {
+    this.saldo += valor;
+    this.verSaldo();
+};
+
+Conta.prototype.verSaldo = function() {
+    console.log(`Ag/c: ${this.agencia}/${this.conta} | ` +
+        `Saldo: R$${this.saldo.toFixed(2)}`
+    );
+};
+
+const conta1 = new Conta(11, 22, 1850);
+console.log(conta1)
+conta1.depositar(11);
+conta1.depositar(65);
+conta1.depositar(30);
+conta1.sacar(745);
+conta1.sacar(6645);
+console.log('');
+
+function CC(agencia, conta, saldo, limite) {
+    Conta.call(this, agencia, conta, saldo);
+    this.limite = limite;
+}
+CC.prototype = Object.create(Conta.prototype);
+CC.prototype.constructor = CC;
+
+CC.prototype.sacar = function(valor) {
+    if(valor > (this.saldo + this.limite)) {
+        console.log(`Saldo insuficiente: ${this.saldo}`);
+        return;
+    }
+
+    this.saldo -= valor;
+    this.verSaldo();
+};
+
+const cc = new CC(55, 66, 0, 1000);
+cc.depositar(523);
+cc.sacar(1005);
+cc.sacar(50);
+cc.sacar(100);
+cc.sacar(400);
+console.log('');
+
+function CP(agencia, conta, saldo, ) {
+    Conta.call(this, agencia, conta, saldo);
+};
+
+CP.prototype = Object.create(Conta.prototype);
+CP.prototype.constructor = CP;
+
+const cp = new CP(12, 33, 0);
+cp.depositar(10);
+cp.sacar(110);
+cp.sacar(1);
