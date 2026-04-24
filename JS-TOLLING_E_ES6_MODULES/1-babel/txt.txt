@@ -1,0 +1,5 @@
+npm init -y  
+npm install @babel/cli @babel/preset-env @babel/core
+npm install --save-dev @babel/cli @babel/preset-env @babel/core
+babel ./main.js -o ./bundle.js --presets=@babel/env -W
+npm run babel
