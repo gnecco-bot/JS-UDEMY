@@ -1,0 +1,4 @@
+npm init -y
+npm express
+npm install nodemon --save-dev
+npx nodemon server.js ou npm start
