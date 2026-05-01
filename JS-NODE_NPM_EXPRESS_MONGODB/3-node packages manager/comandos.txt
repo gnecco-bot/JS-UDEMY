@@ -1,0 +1,10 @@
+// npm init -y
+// npm install express
+// npm install express -E (retirar o "^" na qual quando atualizar ira para ultima ver.)
+// npm unistall express 
+// npm update (atualiza todos os pacotes)
+// npm install express@2.x (versão especifica)
+// npm install express -save-dev (seta os pacotes de dependencias em desenvolvimento)
+// npm install express -save-prod (seta os pacotes para dependencias de producao)
+// npm ls (listar)
+// npm ls --depth=1 (lista com profundidade de 1 pasta)
