@@ -4,38 +4,23 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.CONNECTIONSTRING)
-.then(() => {
-  console.log('Conectado à base de dados');
-  app.emit('pronto'); // Emite um sinal que o banco está pronto
-})
-.catch(e => console.log('Erro de conexão:', e));
+// const connectionString = 'mongodb://Lucas:n7meJMF44WQNcHp2@ac-sb0hzrz-shard-00-00.fvawbb8.mongodb.net:27017,ac-sb0hzrz-shard-00-01.fvawbb8.mongodb.net:27017,ac-sb0hzrz-shard-00-02.fvawbb8.mongodb.net:27017/BASEDEDADOS?ssl=true&replicaSet=atlas-kixwm4-shard-0&authSource=admin';
 
-const session = require('express-session');
-const MongoStore = require('connect-mongo')
-const flash = require('connect-flash');
+// Conexão limpa, sem as opções obsoletas (useNewUrlParser, etc)
+mongoose.connect(process.env.CONNECTIONSTRING)
+  .then(() => {
+    console.log('Conectado à base de dados');
+    app.emit('pronto'); // Emite um sinal que o banco está pronto
+  })
+  .catch(e => console.log('Erro de conexão:', e));
 
 const routes = require('./routes');
 const path = require('path');
 const { middlewareGlobal, outroMiddleware } = require('./src/middlewares/middleware');
 
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, 'public')));
-
-const sessionOptions = session({
-  secret: "fnojndjsçfodiffnjkds",
-  store: new MongoStore({ mongoUrl: process.env.CONNECTIONSTRING }),
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true
-  }
-});
-
-app.use(sessionOptions);
-app.use(flash());
-
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 

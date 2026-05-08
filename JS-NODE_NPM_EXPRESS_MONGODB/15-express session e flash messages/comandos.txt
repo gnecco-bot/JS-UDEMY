@@ -1,0 +1,7 @@
+npm init -y
+npm express
+npm install nodemon --save-dev
+npx nodemon server.js ou npm start
+npm install ejs
+npm install dotenv
+npm install mongoose
