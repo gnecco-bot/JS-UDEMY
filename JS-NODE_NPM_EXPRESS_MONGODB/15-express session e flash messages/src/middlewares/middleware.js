@@ -1,12 +1,5 @@
 exports.middlewareGlobal = (req, res, next) => {
-    // if(req.body.cliente) {
-    //     req.body.cliente = req.body.cliente.replace('senha', 'NÃO USE SENHA')
-    //     console.log();
-    //     console.log(`Vi que você postou ${req.body.cliente}`)
-    //     console.log();
-    // }
-
-    console.log('Passei pelo middleware')
+    res.locals.umaVariavelLocal = 'Este é o valor da variável local vinda do middleware.'
     next();
 }
 

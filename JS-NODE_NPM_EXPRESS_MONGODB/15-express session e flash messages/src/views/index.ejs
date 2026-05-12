@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo</title>
-</head>
-<body>
+<%- include('includes/head'); %>
+
     <section class="container">
-        <h1>Lorem ipsum dolor sit amet</h1>
+
+        <h1>
+            <!-- %= titulo % nao executa html -->
+            <!-- %- titulo % executa html  -->
+            <% if(typeof titulo !== 'undefined') { %>
+                <%= titulo %>
+            <% } else { %>
+                o titulo nao foi enviado
+            <% } %>
+
+            <br>
+            <% numeros.forEach(num => { %>
+                <%= num %> 
+            <% }); %>
+
+            <br>
+            <%= umaVariavelLocal %>
+
+        </h1>
+
         <form action="/" method="post">
             <label>CLiente</label>
             <input type="text" name="cliente">
@@ -15,6 +28,5 @@
         </form>
     </section>
 
-    <script src="./assets/js/bundle.js"></script>
-</body>
-</html>
+<%- include('includes/footer'); %>
+

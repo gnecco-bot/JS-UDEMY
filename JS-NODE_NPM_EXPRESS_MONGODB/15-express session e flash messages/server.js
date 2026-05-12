@@ -18,7 +18,6 @@ const routes = require('./routes');
 const path = require('path');
 const { middlewareGlobal, outroMiddleware } = require('./src/middlewares/middleware');
 
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.set('views', './src/views');
@@ -28,7 +27,6 @@ app.use(middlewareGlobal);
 app.use(outroMiddleware);
 app.use(routes);
 
-// Só escuta a porta 3000 quando o banco estiver pronto
 app.on('pronto', () => {
   app.listen(3000, () => {
     console.log('Acessar http://localhost:3000');
@@ -36,29 +34,3 @@ app.on('pronto', () => {
   });
 });
 
-// const connectionString = 'mongodb://Lucas:12345@ac-sb0hzrz-shard-00-00.fvawbb8.mongodb.net:27017,ac-sb0hzrz-shard-00-01.fvawbb8.mongodb.net:27017,ac-sb0hzrz-shard-00-02.fvawbb8.mongodb.net:27017/?ssl=true&replicaSet=atlas-kixwm4-shard-0&authSource=admin&appName=cursoUdemy';
-// mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => ('Agora que a conexão ocorreu'));
-
-// const routes = require('./routes');
-// const path = require('path');
-// const { middlewareGlobal, outroMiddleware } = require('./src/middlewares/middleware');
-
-// app.use(express.urlencoded({extended: true}));
-
-// // arquivos estaticos
-// app.use(express.static(path.resolve(__dirname, 'public')));
-// // http://localhost:3000/assets/css/style.css
-
-// // app.set('views', path.resolve(__dirname, 'src', 'views'))
-// app.set('views', './src/views');
-// app.set('view engine', 'ejs');
-
-// // middlewares
-// app.use(middlewareGlobal);
-// app.use(outroMiddleware);
-// app.use(routes);
-
-// app.listen(3000, () => {
-//     console.log('Acessar http://localhost:3000');
-//     console.log('Servidor excutando na porta 3000');
-// });

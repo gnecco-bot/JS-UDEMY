@@ -1,28 +1,10 @@
 const HomeModel = require('../models/HomeModel');
 
-// HomeModel.create({
-//     titulo: 'Outro titulo',
-//     descricao: 'Outra descrição'
-// })
-//     .then(dados => console.log(dados))
-//     .catch(e => console.log(e));
-
-// HomeModel.find()
-//     .then(dados => console.log(dados))
-//     .catch(e => console.log(e));
-
-
 exports.paginaInicial = (req, res) => {
-    // Verifique se a sessão existe antes de atribuir
-    if (req.session) {
-        req.session.usuario = { nome: 'Luiz', logado: true };
-    } else {
-        console.log('Sessão não encontrada!');
-
-        // console.log(req.flash('info'))
-    }
-    
-    res.render('index');
+    res.render('index', {
+        // titulo: 'Este é o titulo da pagina',
+        numeros: [1,2,3,4,5,6,7,8,9]
+    });
     return;
 };
 
