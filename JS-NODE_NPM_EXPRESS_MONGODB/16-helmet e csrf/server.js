@@ -11,21 +11,22 @@ mongoose.connect(process.env.CONNECTIONSTRING)
 .catch(e => console.log('Erro de conexão:', e));
 
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const flash = require('connect-flash');
-const routes = require('./routes');
-const path = require('path');
-const helmet = require('helmet');
-const csrf = require('csurf');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash'); // mensagens de erros q nao salvam
+const routes = require('./routes'); // rotas
+const path = require('path'); // caminhos pastas
+const helmet = require('helmet'); // segurança
+const csrf = require('csurf'); // segurança de formulario
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
 app.use(helmet());
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'public')));
 
 const sessionOptions = session({
   secret: "fnojndjsçfodiffnjkds",
-  store: new MongoStore({ mongoUrl: process.env.CONNECTIONSTRING }),
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -42,9 +43,10 @@ app.set('view engine', 'ejs');
 
 app.use(csrf());
 app.use(middlewareGlobal);
+app.use(checkCsrfError);
+app.use(csrfMiddleware);
 app.use(routes);
 
-// Só escuta a porta 3000 quando o banco estiver pronto
 app.on('pronto', () => {
   app.listen(3000, () => {
     console.log('Acessar http://localhost:3000');
