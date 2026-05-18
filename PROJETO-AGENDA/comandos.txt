@@ -7,3 +7,15 @@ npm install dotenv
 npm install mongoose
 npm i helmet
 npm i csurf
+
+<% controle ded fluxo (if, for...) %>
+<%= imprime escapando caracters %>
+<%- impreme sem escapar caracteres %>
+<%# comentario %>
+<%- include('caminho/arquivo') %>
+
+<% if (exemplo) { %>
+    <%= exibe alguma coisa %>
+<% } else { %>
+<%= exibe outra coisa %>
+<% } %>
