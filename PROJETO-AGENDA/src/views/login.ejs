@@ -36,6 +36,7 @@
               <p>Se você já tem uma conta, faça o login abaixo:</p>
 
               <form action="/login/login" method="POST">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                 <div class="form-group">
                   <label>Seu E-mail</label>
                   <input type="email" class="form-control" name="email">
@@ -44,7 +45,7 @@
                   <label>Seu senha</label>
                   <input type="password" class="form-control" name="password">
                 </div>
-                <button type="submit" class="btn btn-primary">Criar minha conta</button>
+                <button type="submit" class="btn btn-primary">Entrar</button>
               </form>
             </div>
           </div>
