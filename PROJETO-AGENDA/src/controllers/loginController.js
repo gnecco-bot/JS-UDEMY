@@ -12,16 +12,17 @@ exports.register = async function(req, res) {
     if(login.errors.length > 0) {
       req.flash('errors', login.errors);
       req.session.save(function() {
-        return res.redirect('back');
+        return res.redirect(req.get("Referrer") || '/login/index')
+
       }); 
       return;
     }
 
     req.flash('success', 'Seu usuáro foi criado com sucesso.');
     req.session.save(function() {
-      return res.redirect('back');
+      return res.redirect(req.get("Referrer") || '/login/index')
     }); 
-    return res.send(login.errors);
+
   } catch(e) {
     console.log(e);
     res.render('404');
